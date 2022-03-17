@@ -2,8 +2,9 @@ import React from 'react'
 import './Create.css'
 import { useState, useContext, useEffect } from 'react'
 import {Link} from 'react-router-dom'
-import { SERVER } from '../../App'
 import {useForm} from 'react-hook-form'
+import axios from 'axios'
+import { SERVER } from '../../App'
 import Alert from '@mui/material/Alert'
 
 const alertStyles = {
@@ -23,9 +24,11 @@ const LOGO = "./assets/add_account.png"
 const Create = () => {
     const [invalid, setInvalid] = useState(false)
     const {register, handleSubmit, formState: {errors}} = useForm()
-    
+
     const createUser = (data) => {
-        console.log(data)
+        axios.post(`${SERVER}/createuser`,data).then(res=>{
+            alert("Registered Successfully.")
+        })
     }
 
   return (

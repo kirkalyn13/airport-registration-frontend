@@ -13,11 +13,13 @@ const buttonStyles = {
 }
 
 const Edit = () => {
-  const {register, watch, formState: {errors}, handleSubmit} = useForm()
-  console.log(watch())
+  const {register,  formState: {errors}, handleSubmit} = useForm()
+
   const saveChanges = data => {
     console.log(data)
     alert("Changes saved.")
+    /*axios.put(`${SERVER}/edit/${info.id}`,data).then(()=>{
+        })*/
   }
 
   return (

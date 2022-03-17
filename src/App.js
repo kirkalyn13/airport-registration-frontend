@@ -5,7 +5,7 @@ import Login from './routes/Login/Login'
 import Create from './routes/Create/Create'
 import Registration from './routes/Registration/Registration'
 
-const SERVER = ''
+export const SERVER = 'http://localhost:3005'
 
 function App() {
   const [ isAuth, setIsAuth ] = useState(true)

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import { SERVER } from '../../App'
 import Alert from '@mui/material/Alert'
 import {useForm} from 'react-hook-form'
-//import axios from 'axios'
+import axios from 'axios'
 
 const alertStyles = {
     color:'#F44336',
@@ -26,7 +26,9 @@ const Login = () => {
     const {register, handleSubmit, formState: {errors}} = useForm()
 
     const login = (data) => {
-        console.log(data)
+        axios.post(`${SERVER}/login`,data).then(res=>{
+            console.log(res.data)
+        })
     }
   return (
     <div className="login-page">
