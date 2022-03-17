@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import {useState, useEffect} from 'react'
+import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
+import Login from './routes/Login/Login'
+import Create from './routes/Create/Create'
+import Registration from './routes/Registration/Registration'
+
+const SERVER = ''
 
 function App() {
+  const [ isAuth, setIsAuth ] = useState(true)
+  const [ toCreate, setToCreate ] = useState(false)
+  const [ user, setUser ] = useState({})
+  
+  useEffect(() => {
+    const data = localStorage.getItem("airport-user")
+    if(data){
+      setUser(JSON.parse(data))  
+      setIsAuth(true) 
+    }
+  },[])
+
+  useEffect(() => {
+    localStorage.setItem("airport-user", JSON.stringify(user))
+  })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={isAuth ? <Registration/> : <Navigate to="/login" />}/>
+          <Route path="/login"  element={<Login/>} />
+          <Route path="/create" element={<Create/>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
