@@ -1,18 +1,12 @@
 import React from 'react'
 import './Create.css'
-import { useState, useContext} from 'react'
+import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { SERVER } from '../../App'
 import { AuthContext } from '../../App'
 import axios from 'axios'
-import Alert from '@mui/material/Alert'
 
-const alertStyles = {
-    color:'#F44336',
-    fontWeight:'bold', 
-    fontSize:'medium'
-}
 const linkStyles = {
     backgroundColor: "#CFD8DC",
     color: "#000",
@@ -23,7 +17,6 @@ const linkStyles = {
 const LOGO = "./assets/add_account.png"
 
 const Create = () => {
-    const [invalid, setInvalid] = useState(false)
     const {register, handleSubmit, formState: {errors}} = useForm()
     const {setUser, setIsAuth} = useContext(AuthContext)
 
@@ -59,12 +52,6 @@ const Create = () => {
             </div>
             <div className="login">
                 <form className="input-info-login" autoComplete="off" onSubmit={handleSubmit(data => createUser(data))}>
-                {invalid === true ? 
-                <Alert 
-                    severity="error" width="200px" variant="outlined"
-                    style={alertStyles}>
-                        Invalid User Credentials.
-                </Alert> : null}
                 <h2 className="label-info">Account Information: </h2>
                     <label className="label-info">User Name: </label>
                     <input className="input-login" type="text"    

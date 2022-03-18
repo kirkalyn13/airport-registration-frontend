@@ -1,17 +1,12 @@
 import React from 'react'
 import './Login.css'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext } from 'react'
 import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { SERVER } from '../../App'
 import { AuthContext } from '../../App'
 import axios from 'axios'
 import Alert from '@mui/material/Alert'
-
-const initialFieldValues = {
-    username: '',
-    password: '',
-}
 
 const alertStyles = {
     color:'#F44336',
@@ -31,8 +26,6 @@ const Login = () => {
     const [invalid, setInvalid] = useState(false)
     const {setUser, setIsAuth} = useContext(AuthContext)
     const {register, handleSubmit, formState: {errors}} = useForm()
-    const [ values, setValues ] = useState(initialFieldValues)
-    const [submitState, setSubmitState] = useState(false)
 
     const login = (data) => {
         axios.post(`${SERVER}/login`,data).then(response =>{

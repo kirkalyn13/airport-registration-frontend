@@ -1,5 +1,7 @@
 import {useContext} from 'react'
 import { AuthContext } from '../../App'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../features/user'
 import './Header.css'
 import Button from '@mui/material/Button'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
@@ -15,8 +17,10 @@ const buttonStyles = {
 
 const Header = () => {
     const {user, setUser, setIsAuth} =  useContext(AuthContext)
+    const dispatch = useDispatch()
 
     const logout = () => {
+      //dispatch(logout)
         setUser({
           })
         setIsAuth(false)

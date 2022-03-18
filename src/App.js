@@ -16,7 +16,7 @@ function App() {
     const data = localStorage.getItem("airport-user")
     if(data){
       setUser(JSON.parse(data))  
-      setIsAuth(true) 
+      //setIsAuth(true) 
     }
   },[])
 
@@ -25,8 +25,10 @@ function App() {
   })
 
   useEffect(()=>{
-    console.log(isAuth)
-  },[isAuth])
+    if(user.username !== "" && user.login === true){setIsAuth(true)}
+  },[user])
+
+  console.log(user)
 
   return (
     <AuthContext.Provider value={{user, setUser, setIsAuth}}>
@@ -34,7 +36,7 @@ function App() {
         <Router>
           <Routes>
             <Route exact path="/" element={isAuth ? <Registration/> : <Navigate to="/login" />}/>
-            <Route path="/login"  element={!isAuth ? <Login/> : <Navigate to="/" />} />
+            <Route path="/login"  element={!isAuth  ? <Login/> : <Navigate to="/" />} />
             <Route path="/create" element={!isAuth ? <Create/> : <Navigate to="/" />} />
           </Routes>
         </Router>
