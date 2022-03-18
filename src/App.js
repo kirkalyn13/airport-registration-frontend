@@ -28,8 +28,6 @@ function App() {
     if(user.username !== "" && user.login === true){setIsAuth(true)}
   },[user])
 
-  console.log(user)
-
   return (
     <AuthContext.Provider value={{user, setUser, setIsAuth}}>
       <div className="App">

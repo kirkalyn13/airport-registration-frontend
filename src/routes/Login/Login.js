@@ -58,7 +58,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
-            <img className="logo" src={LOGO} width="300" height="300" alt="logo" margin="20px"/>
+            <img className="logo" src={LOGO} width="200" height="200" alt="logo" margin="20px"/>
             <div className="title">
                 <h1 className="title-text">Airport Registration</h1>
             </div>

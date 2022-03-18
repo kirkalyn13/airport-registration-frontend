@@ -46,7 +46,7 @@ const Create = () => {
 
   return (
     <div className="login-page">
-            <img className="logo" src={LOGO} width="150" height="150" alt="logo" margin="20px"/>
+            <img className="logo" src={LOGO} width="100" height="100" alt="logo" margin="20px"/>
             <div className="title">
                 <h1 className="title-text">Create New Account</h1>
             </div>

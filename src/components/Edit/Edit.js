@@ -2,7 +2,7 @@ import {useContext} from 'react'
 import ExitButton from '../Button/Button'
 import {useForm} from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { edit } from '../../features/user'
+import { edit } from '../../features/slices/user'
 import { SERVER } from '../../App'
 import { AuthContext } from '../../App'
 import Button from '@mui/material/Button'
@@ -19,7 +19,7 @@ const buttonStyles = {
 
 const Edit = () => {
   const {user} = useContext(AuthContext)
-  const userInfo = useSelector((state) => state.data.value)
+  const userInfo = useSelector((state) => state.data.data)
   const dispatch = useDispatch()
   const {register,  formState: {errors}, handleSubmit} = useForm(
     {
