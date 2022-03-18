@@ -1,10 +1,11 @@
 import React from 'react'
 import './Create.css'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
-import axios from 'axios'
 import { SERVER } from '../../App'
+import { AuthContext } from '../../App'
+import axios from 'axios'
 import Alert from '@mui/material/Alert'
 
 const alertStyles = {
@@ -24,12 +25,31 @@ const LOGO = "./assets/add_account.png"
 const Create = () => {
     const [invalid, setInvalid] = useState(false)
     const {register, handleSubmit, formState: {errors}} = useForm()
+    const {setUser, setIsAuth} = useContext(AuthContext)
 
     const createUser = (data) => {
-        axios.post(`${SERVER}/createuser`,data).then(res=>{
+        axios.post(`${SERVER}/createuser`,data).then(res=>{ 
             alert("Registered Successfully.")
+            login(data)
         })
     }
+
+    const login = (data) => {
+        axios.post(`${SERVER}/login`,data).then(response =>{
+            if(response.data.login === true){
+                setUser(response.data)
+                setIsAuth(true)
+            }else{
+                setUser({
+                    username: "",
+                    userNumber:"",
+                    login: false
+                })
+            }
+        }).catch(err =>{
+            console.log(err);
+        })
+      }
 
   return (
     <div className="login-page">

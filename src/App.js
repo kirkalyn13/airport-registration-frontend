@@ -35,7 +35,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={isAuth ? <Registration/> : <Navigate to="/login" />}/>
             <Route path="/login"  element={!isAuth ? <Login/> : <Navigate to="/" />} />
-            <Route path="/create" element={<Create/>} />
+            <Route path="/create" element={!isAuth ? <Create/> : <Navigate to="/" />} />
           </Routes>
         </Router>
       </div>
