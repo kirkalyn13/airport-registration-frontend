@@ -1,15 +1,15 @@
 import './App.css'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, createContext} from 'react'
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import Login from './routes/Login/Login'
 import Create from './routes/Create/Create'
 import Registration from './routes/Registration/Registration'
 
 export const SERVER = 'http://localhost:3005'
+export const AuthContext = createContext()
 
 function App() {
-  const [ isAuth, setIsAuth ] = useState(true)
-  const [ toCreate, setToCreate ] = useState(false)
+  const [ isAuth, setIsAuth ] = useState(false)
   const [ user, setUser ] = useState({})
   
   useEffect(() => {
@@ -24,16 +24,22 @@ function App() {
     localStorage.setItem("airport-user", JSON.stringify(user))
   })
 
+  useEffect(()=>{
+    console.log(isAuth)
+  },[isAuth])
+
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route exact path="/" element={isAuth ? <Registration/> : <Navigate to="/login" />}/>
-          <Route path="/login"  element={<Login/>} />
-          <Route path="/create" element={<Create/>} />
-        </Routes>
-      </Router>
-    </div>
+    <AuthContext.Provider value={{user, setUser, setIsAuth}}>
+      <div className="App">
+        <Router>
+          <Routes>
+            <Route exact path="/" element={isAuth ? <Registration/> : <Navigate to="/login" />}/>
+            <Route path="/login"  element={!isAuth ? <Login/> : <Navigate to="/" />} />
+            <Route path="/create" element={<Create/>} />
+          </Routes>
+        </Router>
+      </div>
+    </AuthContext.Provider>
   );
 }
 

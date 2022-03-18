@@ -1,5 +1,6 @@
 import {useState, createContext} from 'react'
 import './Registration.css'
+import Header from '../../components/Header/Header'
 import Photo from '../../components/Photo/Photo'
 import Details from '../../components/Details/Details'
 import Edit from '../../components/Edit/Edit'
@@ -12,6 +13,7 @@ const Registration = () => {
   return (
     <RegistrationContext.Provider value={{showEdit, setShowEdit}}>
     <div className="container-registration">
+      <Header />
       <h1>Registration</h1>
       <Photo />
       {showEdit ? <Edit /> : <Details />}

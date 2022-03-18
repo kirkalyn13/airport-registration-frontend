@@ -2,10 +2,16 @@ import React from 'react'
 import './Login.css'
 import { useState, useContext, useEffect } from 'react'
 import {Link} from 'react-router-dom'
-import { SERVER } from '../../App'
-import Alert from '@mui/material/Alert'
 import {useForm} from 'react-hook-form'
+import { SERVER } from '../../App'
+import { AuthContext } from '../../App'
 import axios from 'axios'
+import Alert from '@mui/material/Alert'
+
+const initialFieldValues = {
+    username: '',
+    password: '',
+}
 
 const alertStyles = {
     color:'#F44336',
@@ -23,13 +29,40 @@ const LOGO = "./assets/airport.png"
 
 const Login = () => {
     const [invalid, setInvalid] = useState(false)
+    const {setUser, setIsAuth} = useContext(AuthContext)
     const {register, handleSubmit, formState: {errors}} = useForm()
+    const [ values, setValues ] = useState(initialFieldValues)
+    const [submitState, setSubmitState] = useState(false)
 
     const login = (data) => {
-        axios.post(`${SERVER}/login`,data).then(res=>{
-            console.log(res.data)
+        axios.post(`${SERVER}/login`,data).then(response =>{
+            if(response.data.login === true){
+                setUser(response.data)
+                authenticate()
+            }else{
+                setUser({
+                    username: "",
+                    userNumber:"",
+                    login: false
+                })
+                invalidUser()
+            }
+        }).catch(err =>{
+            console.log(err);
         })
+      }
+
+      const authenticate = () =>{
+        setInvalid(false)
+        setIsAuth(true)
     }
+
+    const invalidUser = () => {
+        setIsAuth(false)
+        setInvalid(true)
+        localStorage.removeItem("airport-user")
+    }
+
   return (
     <div className="login-page">
             <img className="logo" src={LOGO} width="300" height="300" alt="logo" margin="20px"/>
