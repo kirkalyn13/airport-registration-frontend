@@ -19,14 +19,14 @@ const Details = () => {
   return (
     <div>
       <h2>Personal Information</h2>
-      <div className="info-row"><strong>Last Name: </strong>{userInfo.lastName}</div>
-      <div className="info-row"><strong>First Name: </strong>{userInfo.firstName}</div>
-      <div className="info-row"><strong>Middle Name: </strong>{userInfo.middleName}</div>
-      <div className="info-row"><strong>Sex: </strong>{userInfo.sex}</div>
-      <div className="info-row"><strong>Birthday: </strong>{userInfo.birthday}</div>
-      <div className="info-row"><strong>Address: </strong>{userInfo.address}</div>
-      <div className="info-row"><strong>Email: </strong>{userInfo.email}</div>
-      <div className="info-row"><strong>Contact Number: </strong>{userInfo.contactNumber}</div>
+      <div className="info-row"><strong className="info-label">Last Name: </strong><p></p><div className="info" >{userInfo.lastName}</div></div>
+      <div className="info-row"><strong className="info-label">First Name: </strong><div className="info" >{userInfo.firstName}</div></div>
+      <div className="info-row"><strong className="info-label">Middle Name: </strong><div className="info" >{userInfo.middleName}</div></div>
+      <div className="info-row"><strong className="info-label">Sex: </strong><div className="info" >{userInfo.sex}</div></div>
+      <div className="info-row"><strong className="info-label">Birthday: </strong><div className="info" >{userInfo.birthday}</div></div>
+      <div className="info-row"><strong className="info-label">Address: </strong><div className="info" >{userInfo.address}</div></div>
+      <div className="info-row"><strong className="info-label">Email: </strong><div className="info" >{userInfo.email}</div></div>
+      <div className="info-row"><strong className="info-label">Contact Number: </strong><div className="info" >{userInfo.contactNumber}</div></div>
       <Button/>
     </div>
   )

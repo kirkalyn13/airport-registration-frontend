@@ -29,9 +29,6 @@ export const userSlice = createSlice({
         data: initialFieldValues,
     },
     reducers:{
-        login: (state, action) => {
-            state.data = action.payload
-        },
         edit: (state, action) => {
             state.data = action.payload
         },

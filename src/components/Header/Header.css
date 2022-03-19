@@ -1,13 +1,14 @@
 .header {
     display: flex;
     top: 0;
-    width: inherit;
+    width: 100%;
     justify-content: space-around;
     align-items: center;
-    min-height: 10vh;
+    min-height: 8vh;
     background: #0097A7;
     color: #FFFFFF;
     box-shadow: 2px 5px 5px #888888;
+    margin: 0;
   }
   .container-title{
       display: flex;

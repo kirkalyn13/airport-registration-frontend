@@ -4,7 +4,12 @@
     justify-content: space-between;
     width: 50%;
     margin: auto;
-    padding: 5px 1em 0 1em;
+}
+.info-label{
+    margin-left: 10px;
+}
+.info{
+    margin-right: 10px;
 }
 
 @media(max-width: 800px){
