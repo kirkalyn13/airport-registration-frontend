@@ -19,7 +19,7 @@ const Details = () => {
   return (
     <div>
       <h2>Personal Information</h2>
-      <div className="info-row"><strong className="info-label">Last Name: </strong><p></p><div className="info" >{userInfo.lastName}</div></div>
+      <div className="info-row"><strong className="info-label">Last Name: </strong><div className="info" >{userInfo.lastName}</div></div>
       <div className="info-row"><strong className="info-label">First Name: </strong><div className="info" >{userInfo.firstName}</div></div>
       <div className="info-row"><strong className="info-label">Middle Name: </strong><div className="info" >{userInfo.middleName}</div></div>
       <div className="info-row"><strong className="info-label">Sex: </strong><div className="info" >{userInfo.sex}</div></div>

@@ -1,10 +1,10 @@
 import React from 'react'
-import './Create.css'
 import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { SERVER } from '../../App'
 import { AuthContext } from '../../App'
+import './Create.css'
 import axios from 'axios'
 
 const linkStyles = {
@@ -17,7 +17,7 @@ const linkStyles = {
 const LOGO = "./assets/add_account.png"
 
 const Create = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm()
+    const {register, watch,handleSubmit, formState: {errors}} = useForm()
     const {setUser, setIsAuth} = useContext(AuthContext)
 
     const createUser = (data) => {
@@ -27,6 +27,7 @@ const Create = () => {
         })
     }
 
+    console.log(watch())
     const login = (data) => {
         axios.post(`${SERVER}/login`,data).then(response =>{
             if(response.data.login === true){
@@ -45,22 +46,22 @@ const Create = () => {
       }
 
   return (
-    <div className="login-page">
+    <div className="create-page">
             <img className="logo" src={LOGO} width="100" height="100" alt="logo" margin="20px"/>
             <div className="title">
                 <h1 className="title-text">Create New Account</h1>
             </div>
-            <div className="login">
-                <form className="input-info-login" autoComplete="off" onSubmit={handleSubmit(data => createUser(data))}>
+            <div className="create">
+                <form className="input-info-create" autoComplete="off" onSubmit={handleSubmit(data => createUser(data))}>
                 <h2 className="label-info">Account Information: </h2>
                     <label className="label-info">User Name: </label>
-                    <input className="input-login" type="text"    
+                    <input className="input-create" type="text"    
                     {...register("username", {required: "This field is required.", 
                     maxLength: {value: 30, message: "You have exceeded the maximum limit."}})}
-                    placeholder="Enter User Name"/>
+                    placeholder="Enter Username"/>
                     {errors.username ? <p className="error">{errors.username.message}</p> : null}
                     <label className="label-info">Password: </label>
-                    <input  className="input-login" type="password" 
+                    <input  className="input-create" type="password" 
                     {...register("password", {required: "This field is required.", 
                     maxLength: {value: 30, message: "You have exceeded the maximum limit."},
                     minLength: {value: 8, message: "Minimum of 8 characters."}})}
@@ -68,22 +69,25 @@ const Create = () => {
                     {errors.password ? <p className="error">{errors.password.message}</p> : null}
                 <h2 className="label-info">Personal Information: </h2>
                     <label className="label-info">Last Name: </label>
-                    <input className="input-login" type="text"    
+                    <input className="input-create" type="text"    
                     {...register("lastName", {required: "This field is required.", 
                     maxLength: {value: 30, message: "You have exceeded the maximum limit."}})}
-                    placeholder="Enter Last Name"/>
+                    placeholder="Enter Last Name"
+                    />
                     {errors.lastName ? <p className="error">{errors.lastName.message}</p> : null}
                     <label className="label-info">First Name: </label>
-                    <input  className="input-login" type="text" 
+                    <input  className="input-create" type="text" 
                     {...register("firstName", {required: "This field is required.", 
                     maxLength: {value: 50, message: "You have exceeded the maximum limit."}})}
-                    placeholder="Enter First Name"/>
+                    placeholder="Enter First Name"
+                    />
                     {errors.firstName ? <p className="error">{errors.firstName.message}</p> : null}
                     <label className="label-info">Middle Name: </label>
-                    <input className="input-login" type="text"    
+                    <input className="input-create" type="text"    
                     {...register("middleName", {required: "This field is required.", 
                     maxLength: {value: 30, message: "You have exceeded the maximum limit."}})}
-                    placeholder="Enter Middle Name"/>
+                    placeholder="Enter Middle Name"
+                    />
                     {errors.middleName ? <p className="error">{errors.middleName.message}</p> : null}
                     <label className="label-info">Sex: </label>
                     <div className="container-sex">
@@ -99,38 +103,33 @@ const Create = () => {
                     </div>
                     {errors.sex ? <p className="error">{errors.sex.message}</p> : null}
                     <label className="label-info">Birthday: </label>
-                    <input className="input-login" type="date"    
+                    <input className="input-create" type="date"    
                     {...register("birthday", {required: "This field is required.", valueAsDate: true})}
                     placeholder="Enter Birthday"/>
                     {errors.birthday ? <p className="error">{errors.birthday.message}</p> : null}
                     <label className="label-info">Address: </label>
-                    <input  className="input-login" type="text" 
+                    <input  className="input-create" type="text" 
                     {...register("address", {
                     required: "This field is required.", 
                     maxLength: {value: 255, message: "You have exceeded the maximum limit."}})}
-                    placeholder="Enter Address"/>
+                    placeholder="Enter Address"
+                    />
                     {errors.address ? <p className="error">{errors.address.message}</p> : null}
                     <label className="label-info">Email: </label>
-                    <input className="input-login" type="text"    
+                    <input className="input-create" type="text"    
                     {...register("email", {required: "This field is required.", 
                     maxLength: {value: 30, message: "You have exceeded the maximum limit."}})}
                     placeholder="Enter Email"/>
                     {errors.email ? <p className="error">{errors.email.message}</p> : null}
                     <label className="label-info">Contact Number: </label>
-                    <input  className="input-login" type="number" 
+                    <input  className="input-create" type="number" 
                     {...register("contactNumber", {required: "This field is required.", 
                     valueAsNumber: true, 
                     maxLength: {value: 30, message: "You have exceeded the maximum limit."}})}
                     placeholder="Enter Contact Number"/>
                     {errors.contactNumber ? <p className="error">{errors.contactNumber.message}</p> : null}
                     <label className="label-info">Recent Photo: </label>
-                    <input type="file"
-                                {...register("photo",{required: "Please upload your recent photo."})}
-                                accept="image/*"
-                                placeholder="Equipment Image"
-                                style={{border:"inherit"}}/>
-                    {errors.photo ? <p className="error">{errors.photo.message}</p> : null}
-                <input className="btn-login" type="submit" value="CREATE ACCOUNT"/>
+                <input className="btn-create" type="submit" value="CREATE ACCOUNT"/>
                 </form>
                 <Link style={linkStyles} to="/login">Login</Link>
             </div>

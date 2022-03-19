@@ -5,7 +5,7 @@ import Login from './routes/Login/Login'
 import Create from './routes/Create/Create'
 import Registration from './routes/Registration/Registration'
 
-export const SERVER = 'http://localhost:3005'
+export const SERVER = 'http://192.168.100.62:3005'
 export const AuthContext = createContext()
 
 function App() {

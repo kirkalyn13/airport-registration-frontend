@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import { useState, useContext } from 'react'
 import ExitButton from '../Button/Button'
 import {useForm} from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,10 +18,11 @@ const buttonStyles = {
 }
 
 const Edit = () => {
+  const [photo, setPhoto] = useState(null)
   const {user} = useContext(AuthContext)
   const userInfo = useSelector((state) => state.data.data)
   const dispatch = useDispatch()
-  const {register,  formState: {errors}, handleSubmit} = useForm(
+  const {register, formState: {errors}, handleSubmit} = useForm(
     {
       defaultValues: {
         lastName: userInfo.lastName,
@@ -32,17 +33,37 @@ const Edit = () => {
         address:  userInfo.address,
         email: userInfo.email,
         contactNumber: userInfo.contactNumber,
+        photo: null,
       }
     }
   )
 
   const saveChanges = data => {
-    //console.log(data)
+    const formData = new FormData()
+    formData.append("photo", data.photo)
     axios.put(`${SERVER}/edit/${user.userNumber}`, data).then((response)=>{
       dispatch(edit(data))
         })
+    uploadPhoto()
     alert("Changes saved.")
+    setPhoto(null)
     window.location.reload()
+  }
+
+  const onChangeImageHandler = e =>{
+    var reader = new FileReader()
+    reader.readAsDataURL(e.target.files[0])
+    reader.onload = function(){
+      setPhoto({photo: reader.result})
+  }
+  }
+
+  const uploadPhoto = () => {
+    if(photo !== null){
+      axios.put(`${SERVER}/upload/${user.userNumber}`, photo).then((response)=>{
+        console.log("Uploaded photo.")
+          })
+    }
   }
 
   return (
@@ -50,17 +71,13 @@ const Edit = () => {
       <form  className="input-info-login" onSubmit={handleSubmit(data => saveChanges(data))}>
                     <label className="label-info">Update Recent Photo: </label>
                     <input type="file"
-                                {...register("photo",{required: "Please upload your recent photo."})}
+                                onChange={onChangeImageHandler}
+                                name="photo" 
                                 accept="image/*"
-                                placeholder="Equipment Image"
+                                placeholder="Recent Photo"
                                 style={{border:"inherit"}}/>
-                    {errors.photo ? <p className="error">{errors.photo.message}</p> : null}
+                    {/*errors.photo ? <p className="error">{errors.photo.message}</p> : null*/}
                     {/*<label className="label-info">User Name: </label>
-                    <input className="input-login" type="text"    
-                    {...register("username",{required: "This field is required.", 
-                    maxLength: {value: 30, message: "You have exceeded the maximum limit."}})}
-                    placeholder="Enter User Name"/>
-                    {errors.username ? <p className="error">{errors.username.message}</p> : null}
                     <label className="label-info">Password: </label>
                     <input  className="input-login" type="password" 
                     {...register("password",{required: "This field is required.", 
@@ -73,19 +90,22 @@ const Edit = () => {
                     <input className="input-login" type="text"    
                     {...register("lastName",{required: "This field is required.", 
                     maxLength: {value: 30, message: "You have exceeded the maximum limit."}})}
-                    placeholder="Enter Last Name"/>
+                    placeholder="Enter Last Name"
+                    />
                     {errors.lastName ? <p className="error">{errors.lastName.message}</p> : null}
                     <label className="label-info">First Name: </label>
                     <input  className="input-login" type="text" 
                     {...register("firstName",{required: "This field is required.", 
                     maxLength: {value: 30, message: "You have exceeded the maximum limit."}})}
-                    placeholder="Enter First Name"/>
+                    placeholder="Enter First Name"
+                    />
                     {errors.firstName ? <p className="error">{errors.firstName.message}</p> : null}
                     <label className="label-info">Middle Name: </label>
                     <input className="input-login" type="text"    
                     {...register("middleName",{required: "This field is required.", 
                     maxLength: {value: 30, message: "You have exceeded the maximum limit."}})}
-                    placeholder="Enter Middle Name"/>
+                    placeholder="Enter Middle Name"
+                    />
                     {errors.middleName ? <p className="error">{errors.middleName.message}</p> : null}
                     <label className="label-info">Sex: </label>
                     <div className="container-sex">
@@ -109,7 +129,8 @@ const Edit = () => {
                     <input  className="input-login" type="text" 
                     {...register("address",{required: "This field is required.", 
                     maxLength: {value: 255, message: "You have exceeded the maximum limit."}})}
-                    placeholder="Enter Address"/>
+                    placeholder="Enter Address"
+                    />
                     {errors.address ? <p className="error">{errors.address.message}</p> : null}
                     <label className="label-info">Email: </label>
                     <input className="input-login" type="text"    

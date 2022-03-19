@@ -14,7 +14,7 @@ const Registration = () => {
     <RegistrationContext.Provider value={{showEdit, setShowEdit}}>
     <div className="container-registration">
       <Header />
-      <h1>Registration</h1>
+      <h2>Registration</h2>
       <Photo />
       {showEdit ? <Edit /> : <Details />}
     </div>

@@ -1,75 +1,66 @@
-.login-page{
+.create-page{
     color: black;
     margin: 50px 20px;
     align-items: center;
     flex-direction: column;
-  }
-  .login-title{
-    width: 100%;
-    align-items: center;
-  }
-  .input-info-login{
-    margin: 20px 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    color: #757575;
-    align-items: center;
-  }
-  .input-login{
-    border-radius: 5px;
-    border: solid 2px #212121;
-    padding: 5px 10px 5px 10px;
-    font-size: medium;
-    width: 300px;
-  }
-  .btn-login{
-    align-items: center;
-    width: 300px;
-    padding: 10px 20px;
-    margin: 20px 50px;
-    font-size: medium;
-    background-color: #00BCD4;
-    color: #FFF;
-    border-radius : 10px;
-    border: none;
-  }
-  .btn-register{
-    background-color: #CFD8DC;
-    border: none;
-    font-weight: bold;
-  }
-  .btn:hover, .btn:active, .btn-login:active{
-    background-color: #FFA000;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  a:link, a:visited {
-    background-color: #212121;
-    width: 200px;
-    padding: 15px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 20px 2px 0px 2px;
-    font-weight: bold;
-    border-radius: 5px;
-    color: #FFF;
-  }
-  .input-info, .input-info-login{
-    margin: 10px 0px;
-  }
-  .label-info{
-    font-size: large;
-    font-weight: bold;
-    color: #000;
-    margin: 10px 5px;
-  }
-  .container-sex{
-    display: flex;
-    justify-content: space-evenly;
-  }
+}
+.input-info-create{
+  margin: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  color: #757575;
+  align-items: center;
+}
+.input-create{
+  border-radius: 5px;
+  border: solid 2px #212121;
+  padding: 5px 10px 5px 10px;
+  font-size: medium;
+  width: 300px;
+}
+.btn-create{
+  align-items: center;
+  width: 300px;
+  padding: 10px 20px;
+  margin: 20px 50px;
+  font-size: medium;
+  background-color: #00BCD4;
+  color: #FFF;
+  border-radius : 10px;
+  border: none;
+}
+.btn:hover, .btn:active, .btn-create:active{
+  background-color: #FFA000;
+  font-weight: bold;
+  cursor: pointer;
+}
+a:link, a:visited {
+  background-color: #212121;
+  width: 200px;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 20px 2px 0px 2px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: #FFF;
+}
+.input-info, .input-info-login{
+  margin: 10px 0px;
+}
+.label-info{
+  font-size: large;
+  font-weight: bold;
+  color: #000;
+  margin: 10px 5px;
+}
+.container-sex{
+  display: flex;
+  justify-content: space-evenly;
+}
 .error{
   color: #F44336;
 }
