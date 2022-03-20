@@ -25,11 +25,15 @@
     margin: 10px 0px;
   }
 .label-info{
-    font-size: large;
-    font-weight: bold;
     color: #000;
     margin: 10px 5px;
   }
+.label-info-header{
+  color: #000;
+  font-size: large;
+  font-weight: bold;
+  margin: 20px;
+}
 .error{
     color: #F44336;
   }

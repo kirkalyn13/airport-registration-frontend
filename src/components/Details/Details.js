@@ -11,7 +11,7 @@ const Details = () => {
   const {user} = useContext(AuthContext)
   const dispatch = useDispatch()
   const userInfo = useSelector((state) => state.data.data)
-
+  
   useEffect(()=>{
     dispatch(fetchUserData(user.userNumber))
   },[])
@@ -19,6 +19,7 @@ const Details = () => {
   return (
     <div>
       <h2>Personal Information</h2>
+      <div className="info-row"><strong className="info-label">Flight Number: </strong><div className="info" >{userInfo.flightNumber}</div></div>
       <div className="info-row"><strong className="info-label">Last Name: </strong><div className="info" >{userInfo.lastName}</div></div>
       <div className="info-row"><strong className="info-label">First Name: </strong><div className="info" >{userInfo.firstName}</div></div>
       <div className="info-row"><strong className="info-label">Middle Name: </strong><div className="info" >{userInfo.middleName}</div></div>

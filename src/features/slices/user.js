@@ -14,6 +14,7 @@ const initialFieldValues = {
     email: "",
     contactNumber: 0,
     photo: "",
+    flightNumber: ""
 }
 
 export const fetchUserData = createAsyncThunk("fetchData", async (userNumber) =>
@@ -47,5 +48,5 @@ export const userSlice = createSlice({
 })
 
 
-export const {edit, login, logout} = userSlice.actions
+export const {edit, logout} = userSlice.actions
 export default userSlice.reducer

@@ -34,6 +34,7 @@ const Edit = () => {
         email: userInfo.email,
         contactNumber: userInfo.contactNumber,
         photo: null,
+        flightNumber: userInfo.flightNumber,
       }
     }
   )
@@ -77,15 +78,20 @@ const Edit = () => {
                                 placeholder="Recent Photo"
                                 style={{border:"inherit"}}/>
                     {/*errors.photo ? <p className="error">{errors.photo.message}</p> : null*/}
-                    {/*<label className="label-info">User Name: </label>
-                    <label className="label-info">Password: </label>
+                    {/*<label className="label-info">Password: </label>
                     <input  className="input-login" type="password" 
                     {...register("password",{required: "This field is required.", 
                     maxLength: {value: 30, message: "You have exceeded the maximum limit."},
                     minLength: {value: 8, message: "Minimum of 8 characters."}})}
                     placeholder="Enter Password"/>
                     {errors.password ? <p className="error">{errors.password.message}</p> : null}*/}
-                    <h2 className="label-info">Personal Information: </h2>
+                    <h2 className="label-info-header">Flight Information: </h2>
+                    <label className="label-info">Flight Number: </label>
+                    <input className="input-login" type="text"    
+                    {...register("flightNumber",{maxLength: {value: 20, message: "You have exceeded the maximum limit."}})}
+                    placeholder="Enter Flight Number"
+                    />
+                    <h2 className="label-info-header">Personal Information: </h2>
                     <label className="label-info">Last Name: </label>
                     <input className="input-login" type="text"    
                     {...register("lastName",{required: "This field is required.", 
