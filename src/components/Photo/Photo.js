@@ -9,7 +9,7 @@ const Photo = () => {
   
   return (
     <div>
-        <img className="photo" src={userInfo.photo ? userInfo.photo : DEFAULT} width="200" height="200" alt="logo" margin="20px"/>
+        <img className="photo" src={userInfo.photo ? userInfo.photo : DEFAULT} width="250" height="250" alt="logo" margin="20px"/>
     </div>
   )
 }
